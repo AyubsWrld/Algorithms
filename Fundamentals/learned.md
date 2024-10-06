@@ -1,0 +1,1 @@
+### When merging two sorted arrays (or handling multiple sequences), always account for what happens when one sequence is exhausted before the other. This often requires additional loops or conditions to handle any leftover elements.
