@@ -74,15 +74,13 @@ function getPath(adjacencyList , hashmap) {
       tmp = adjacencyList[tmp];
     }
 
-    console.log(`${key} : ${count}`);
     hashmap[Math.abs(count - m)] = key 
   }
+  console.log(hashmap) ; 
 }
 
-getPath(adjacencyList , hashmap) ;
 
 
+getPath(adjacencyList , hashmap) ; 
 
-for(let i = 0 ; i < hashmap.length ; ++i){
-  console.log(hashmap[i]) ;
-}
+
