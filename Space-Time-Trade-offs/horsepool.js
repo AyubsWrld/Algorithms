@@ -1,24 +1,41 @@
-// function buildShiftTable(pattern) {
-//   let m = pattern.length ; 
-//   const values = new Array(m).fill(m) ; 
-//   for( let i  = 0  ; i < m ; ++i ){
-//
-//   }
-//   return values ; 
-// }
-//
-// const pattern = "BARBER";
-// const shiftTable = buildShiftTable(pattern);
-//
-// console.log(shiftTable);
+const pattern = "ayub" ; 
+let text = 'ljfljsl;sjflsjkweofij afkjalfjla kjayubasdjlkasjdlkj'
 
-let array = [ 4 , 22 , 55 , 12 , 25 , 87 , 45 , 37 , 11 ] ; 
+let m = text.length - 1 ; 
 
-let empty = new Array(array.length).fill(0) ; 
 
-for(let i = 0  ; i < array.length ; ++i){
-  empty[i] = array[i] % 11  ; 
+function createShiftTable( string ){
+  let table = new Object ; 
+  for( let i = 0 ; i < string.length ; i++){
+    table[string[i]] = string.length - 1 -  i ; 
+  }
+  return table ;  
 }
 
-console.log(empty) ; 
+function horsepool(pattern, text) {
+  const shiftTable = createShiftTable(pattern); // Step 1: Create shift table
+  const m = pattern.length;
+  const n = text.length;
+  
+  let i = m - 1; // Start comparison from the end of the pattern
 
+  while (i < n) {
+    let k = 0; // Number of matched characters
+    // Compare the pattern with text from right to left
+    while (k < m && pattern[m - 1 - k] === text[i - k]) {
+      k++;
+    }
+    
+    if (k === m) {
+      return i - m + 1; // Match found, return starting index
+    }
+    
+    // Mismatch: Use the shift table
+    const shift = shiftTable[text[i]] || m; // Default shift if character not in pattern
+    i += shift; // Update index
+  }
+
+  return -1; // No match found
+}
+
+console.log(horsepool(pattern , text)) ; 
